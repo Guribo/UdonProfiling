@@ -55,10 +55,9 @@ namespace TLP.UdonProfiling.Runtime.Ui
 
         public void LateUpdate() {
             ServerTimeText.text = string.Format(
-                    "<color=cyan>Network time:\t{0} s\nVRC error:\t\t{1} ms</color>",
-                    _performanceStatModel.ServerTime.ToString("F4"),
-                    _performanceStatModel.ServerTimeError.ToString("F3")
-            );
+                    "<color=cyan>Network time:\t{0:F4} s\nVRC error:\t\t{1:F3} ms</color>",
+                    _performanceStatModel.ServerTime,
+                    (_performanceStatModel.ServerTimeError*1000));
         }
     }
 }

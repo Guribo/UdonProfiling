@@ -40,6 +40,12 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 
 All notable changes to this project will be documented in this file.
 
+### [1.0.1] - 2024-04-14
+
+#### 🐛 Bug Fixes
+
+- *(Ui)* Fix incorrect unit of server time error
+
 ### [1.0.0] - 2024-04-11
 
 #### 🚀 Features
