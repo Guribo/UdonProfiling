@@ -1,5 +1,6 @@
 using TLP.UdonUtils.DesignPatterns.MVC;
 using TLP.UdonUtils.Sources;
+using TLP.UdonUtils.Sources.Time;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
