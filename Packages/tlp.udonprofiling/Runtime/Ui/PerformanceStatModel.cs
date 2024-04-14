@@ -25,27 +25,35 @@ namespace TLP.UdonProfiling.Runtime.Ui
         [SerializeField]
         private TimeSource RefNetworkTime;
 
-        public double ServerTime
-        {
-            get
-            {
-                if (Utilities.IsValid(NetworkTime)) {
-                    return NetworkTime.TimeAsDouble();
-                }
-
-                return Networking.GetServerTimeInMilliseconds() * 0.001;
+        protected override bool SetupAndValidate() {
+            if (!base.SetupAndValidate()) {
+                return false;
             }
+
+            if (!Utilities.IsValid(NetworkTime)) {
+                Error($"{nameof(NetworkTime)} is not set");
+                return false;
+            }
+
+            if (!Utilities.IsValid(RefNetworkTime)) {
+                Error($"{nameof(RefNetworkTime)} is not set");
+                return false;
+            }
+
+            return true;
         }
+
+        public double ServerTime => NetworkTime.TimeAsDouble();
 
         public double ServerTimeError
         {
             get
             {
-                if (Utilities.IsValid(NetworkTime)) {
-                    return RefNetworkTime.TimeAsDouble() - NetworkTime.TimeAsDouble();
+                var tlpNetworkTime = (TlpNetworkTime)NetworkTime;
+                if (tlpNetworkTime) {
+                    return tlpNetworkTime.ExactError;
                 }
-
-                return 0.0;
+                return RefNetworkTime.TimeAsDouble() - NetworkTime.TimeAsDouble();
             }
         }
     }

@@ -1,8 +1,7 @@
-using System;
 using TLP.UdonUtils.DesignPatterns.MVC;
-using UnityEngine.UI;
 using UdonSharp;
 using UnityEngine;
+using UnityEngine.UI;
 using VRC.SDKBase;
 
 namespace TLP.UdonProfiling.Runtime.Ui
@@ -34,15 +33,9 @@ namespace TLP.UdonProfiling.Runtime.Ui
         }
 
         public override void OnModelChanged() {
-            PlayerCount.text = string.Format(
-                    "<color=#00ff00>Players:\t{0}</color>",
-                    VRCPlayerApi.GetPlayerCount().ToString()
-            );
-            FPSText.text = string.Format("<color=red>{0}</color>", _performanceStatModel.CountedFrames.ToString());
-            FrameTimeText.text = string.Format(
-                    "<color=red>{0} ms</color>",
-                    _performanceStatModel.AverageFrameTime.ToString("F1")
-            );
+            PlayerCount.text = $"<color=#00ff00>Players:\t{VRCPlayerApi.GetPlayerCount().ToString()}</color>";
+            FPSText.text = $"<color=red>{_performanceStatModel.CountedFrames.ToString()}</color>";
+            FrameTimeText.text = $"<color=red>{_performanceStatModel.AverageFrameTime:F1} ms</color>";
 
 
             UdonFrameTimeText.text =
@@ -54,10 +47,8 @@ namespace TLP.UdonProfiling.Runtime.Ui
         }
 
         public void LateUpdate() {
-            ServerTimeText.text = string.Format(
-                    "<color=cyan>Network time:\t{0:F4} s\nVRC error:\t\t{1:F3} ms</color>",
-                    _performanceStatModel.ServerTime,
-                    (_performanceStatModel.ServerTimeError*1000));
+            ServerTimeText.text =
+                    $"<color=cyan>Network time:\t{_performanceStatModel.ServerTime * 1000:F3} ms\nVRC error:\t\t{_performanceStatModel.ServerTimeError * 1000:F3} ms</color>";
         }
     }
 }
