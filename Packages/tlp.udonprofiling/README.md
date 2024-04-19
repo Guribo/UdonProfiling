@@ -40,6 +40,12 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.1] - 2024-04-19
+
+#### ⚙️ Miscellaneous Tasks
+
+- Support UdonUtils 6.0.0
+
 ### [1.1.0] - 2024-04-14
 
 #### 🚀 Features
