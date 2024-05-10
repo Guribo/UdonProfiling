@@ -40,6 +40,12 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.2] - 2024-05-10
+
+#### ⚙️ Miscellaneous Tasks
+
+- Support com.vrchat.worlds 3.6.x and Unity 2022.3.22
+
 ### [1.1.1] - 2024-04-19
 
 #### ⚙️ Miscellaneous Tasks
