@@ -1,25 +1,19 @@
 # Udon Profiling
 
-[![Total downloads](https://img.shields.io/github/downloads/Guribo/UdonProfiling/total?style=flat-square&logo=appveyor)](https://github.com/Guribo/Profiling/releases)
+[![Total downloads](https://img.shields.io/github/downloads/Guribo/UdonProfiling/total?style=flat-square&logo=appveyor)](https://github.com/Guribo/UdonProfiling/releases)
 
 Contains a simple ScreenSpace overlay for displaying Udon performance numbers.
 It was originally based on a [version](https://gist.github.com/MerlinVR/2da80b29361588ddb556fd8d3f3f47b5) by [MerlinVR](https://github.com/merlinvr) (under MIT license) but has since been reworked and extended to fit my needs.
 
-## Dependencies
+![Preview](.Readme/Preview.gif)
 
- - VRChat Creator Companion
-	- VRC World SDK
- - TLP.UdonUtils
-	- Make sure to have its [Dependencies](https://github.com/Guribo/UdonUtils?tab=readme-ov-file#dependencies) added!
- 
 ## Installation
 
-1. Add [dependencies of TLP.UdonUtils](https://github.com/Guribo/UdonUtils?tab=readme-ov-file#dependencies) to VRChat Creator Companion.
-2. Add TLP.UdonUtils to VRChat Creator Companion using the [TLP package listing](https://guribo.github.io/TLP/).
-3. Add TLP.UdonProfiling to VRChat Creator Companion using the [TLP package listing](https://guribo.github.io/TLP/).
-4. Add TLP.UdonProfiling to your project.
+1. Install VRChat World SDK 3.6
+2. Install CyanPlayerObjectPool: https://cyanlaser.github.io/CyanPlayerObjectPool/
+3. Install TLP UdonProfiling: https://guribo.github.io/TLP/
 
-## Example
+## Setup
 
 Example scene with setup can be found in `Packages/tlp.udonprofiling/Runtime/Scenes/UdonProfilingDemo.unity`.
  
@@ -39,6 +33,12 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 ## Changelog
 
 All notable changes to this project will be documented in this file.
+
+### [2.0.0] - 2024-05-16
+
+#### 🚀 Features
+
+- *(UI)* [**breaking**] Rework network stats, add new information of TLP network time, simplify setup
 
 ### [1.1.2] - 2024-05-10
 

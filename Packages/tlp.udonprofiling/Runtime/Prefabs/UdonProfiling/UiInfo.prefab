@@ -201,6 +201,7 @@ RectTransform:
   - {fileID: 8553265908226324738}
   - {fileID: 3589687012203539188}
   - {fileID: 2329534844632664092}
+  - {fileID: 1667036249686833834}
   - {fileID: 8259903958646867561}
   - {fileID: 3393705934454285288}
   m_Father: {fileID: 0}
@@ -232,6 +233,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 881233274547021562}
+  AutoRetrySendOnFailure: 1
   Severity: 5
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
@@ -259,6 +261,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 2103683050647155770}
+  AutoRetrySendOnFailure: 1
   Severity: 5
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
@@ -267,6 +270,7 @@ MonoBehaviour:
   FPSText: {fileID: 8623024788285259605}
   FrameTimeText: {fileID: 7362868153881288125}
   ServerTimeText: {fileID: 46335405875088829}
+  ServerDescriptionText: {fileID: 5391852096193497648}
   UdonFrameTimeText: {fileID: 7593877779407484489}
 --- !u!114 &2103683050647155770
 MonoBehaviour:
@@ -316,6 +320,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 8177235444650323710}
+  AutoRetrySendOnFailure: 1
   Severity: 3
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
@@ -396,6 +401,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 8921995622518305993}
+  AutoRetrySendOnFailure: 1
   Severity: 3
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
@@ -452,6 +458,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 1627215397569306907}
+  AutoRetrySendOnFailure: 1
   Severity: 5
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
@@ -506,6 +513,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 6449119067179388754}
+  AutoRetrySendOnFailure: 1
   Severity: 5
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
@@ -570,7 +578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: -62}
+  m_AnchoredPosition: {x: -2, y: -94.2}
   m_SizeDelta: {x: 50, y: 10}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &8539005950196997303
@@ -658,8 +666,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: -39}
-  m_SizeDelta: {x: 50, y: 10}
+  m_AnchoredPosition: {x: -2, y: -41}
+  m_SizeDelta: {x: 80, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &1252074765173698154
 CanvasRenderer:
@@ -702,9 +710,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '<color=cyan>Network time:\t{0} s
-
-    VRC error:\t{1} ms</color>'
+  m_Text: 
 --- !u!1 &7377405844706508630
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,3 +790,82 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: '<color=#00ff00>Players: 1</color>'
+--- !u!1 &8584981283209855786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1667036249686833834}
+  - component: {fileID: 7697949239677485807}
+  - component: {fileID: 5391852096193497648}
+  m_Layer: 5
+  m_Name: ServerTimeDescription
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1667036249686833834
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8584981283209855786}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7564603157573167204}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -82, y: -41}
+  m_SizeDelta: {x: 218, y: 50}
+  m_Pivot: {x: 1, y: 1}
+--- !u!222 &7697949239677485807
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8584981283209855786}
+  m_CullTransparentMesh: 0
+--- !u!114 &5391852096193497648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8584981283209855786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 4a5acdd6cd5d9de46bb99081baeacad8, type: 3}
+    m_FontSize: 11
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 88
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 

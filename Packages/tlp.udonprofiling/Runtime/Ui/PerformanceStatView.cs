@@ -23,6 +23,9 @@ namespace TLP.UdonProfiling.Runtime.Ui
         internal Text ServerTimeText;
 
         [SerializeField]
+        internal Text ServerDescriptionText;
+
+        [SerializeField]
         internal Text UdonFrameTimeText;
 
         private PerformanceStatModel _performanceStatModel;
@@ -39,7 +42,11 @@ namespace TLP.UdonProfiling.Runtime.Ui
 
 
             UdonFrameTimeText.text =
-                    $"UDON performance\navg. of last {_performanceStatModel.UdonProfiledFrames} frames:\t{_performanceStatModel.UdonAverageFrameTimeMs:F3} ms\nmax:\t{_performanceStatModel.UdonMaxFrameTimeMs:F3} ms\nfixed:\t {Time.fixedDeltaTime * 1000f:F3} ms\nlast:\t{_performanceStatModel.UdonFrameTimeMs:F3} ms";
+                    $"UDON performance\n" +
+                    $"avg. of last {_performanceStatModel.UdonProfiledFrames} frames: \t{_performanceStatModel.UdonAverageFrameTimeMs:F3} ms\n" +
+                    $"max:\t{_performanceStatModel.UdonMaxFrameTimeMs:F3} ms\n" +
+                    $"fixed:\t {Time.fixedDeltaTime * 1000f:F3} ms\n" +
+                    $"last: \t{_performanceStatModel.UdonFrameTimeMs:F3} ms";
 
             if (_performanceStatModel.TooSlow) {
                 UdonFrameTimeText.text = $"<color=red>{UdonFrameTimeText.text}</color>";
@@ -47,8 +54,25 @@ namespace TLP.UdonProfiling.Runtime.Ui
         }
 
         public void LateUpdate() {
-            ServerTimeText.text =
-                    $"<color=cyan>Network time:\t{_performanceStatModel.ServerTime * 1000:F3} ms\nVRC error:\t\t{_performanceStatModel.ServerTimeError * 1000:F3} ms</color>";
+            ServerDescriptionText.text = $"<color=cyan>\n" +
+                                         $"TLP Time :\n" +
+                                         $"VRC Time :\n" +
+                                         $"Corrective drift each frame:\n" +
+                                         $"Error (average of {_performanceStatModel.ServerTimeSamples} samples):\n" +
+                                         $"Exact error:\n</color>";
+            string text =
+                    $"TLP network time\n" +
+                    $"{_performanceStatModel.ServerTime * 1000:F3} ms\n" +
+                    $"{_performanceStatModel.VrcServerTime * 1000:F3} ms\n" +
+                    $"{_performanceStatModel.CorrectiveDrift * 1000:F3} ms\n" +
+                    $"{_performanceStatModel.CumulativeError * 1000:F3} ms\n" +
+                    $"{_performanceStatModel.ServerTimeError * 1000:F3} ms\n";
+
+            if (_performanceStatModel.OutOfSync) {
+                ServerTimeText.text = $"<color=red>{text}</color>";
+            } else {
+                ServerTimeText.text = $"<color=cyan>{text}</color>";
+            }
         }
     }
 }
