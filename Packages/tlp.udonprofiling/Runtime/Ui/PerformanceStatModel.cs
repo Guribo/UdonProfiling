@@ -1,7 +1,7 @@
 using System;
-using TLP.UdonUtils.DesignPatterns.MVC;
-using TLP.UdonUtils.Sources;
-using TLP.UdonUtils.Sources.Time;
+using TLP.UdonUtils.Runtime.DesignPatterns.MVC;
+using TLP.UdonUtils.Runtime.Sources;
+using TLP.UdonUtils.Runtime.Sources.Time;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -43,12 +43,15 @@ namespace TLP.UdonProfiling.Runtime.Ui
             if (!Utilities.IsValid(RefNetworkTime)) {
                 var gameTime = NetworkTime.transform.Find("VrcTime");
                 if (!gameTime) {
-                    ErrorAndDisableGameObject($"{nameof(RefNetworkTime)} is not set and failed to find fallback 'VrcTime");
+                    ErrorAndDisableGameObject(
+                            $"{nameof(RefNetworkTime)} is not set and failed to find fallback 'VrcTime");
                     return false;
                 }
+
                 RefNetworkTime = gameTime.GetComponent<TimeSource>();
                 if (!Utilities.IsValid(RefNetworkTime)) {
-                    ErrorAndDisableGameObject($"{nameof(RefNetworkTime)} is not set and fallback is unavailable, add 'TLP_Essentials' prefab to your scene");
+                    ErrorAndDisableGameObject(
+                            $"{nameof(RefNetworkTime)} is not set and fallback is unavailable, add 'TLP_Essentials' prefab to your scene");
                     return false;
                 }
             }
@@ -66,9 +69,11 @@ namespace TLP.UdonProfiling.Runtime.Ui
                 if (tlpNetworkTime) {
                     return tlpNetworkTime.SampledRealServerTime;
                 }
+
                 return 0f;
             }
         }
+
         public double ServerTimeError
         {
             get
@@ -77,6 +82,7 @@ namespace TLP.UdonProfiling.Runtime.Ui
                 if (tlpNetworkTime) {
                     return tlpNetworkTime.ExactError;
                 }
+
                 return RefNetworkTime.TimeAsDouble() - NetworkTime.TimeAsDouble();
             }
         }
@@ -89,6 +95,7 @@ namespace TLP.UdonProfiling.Runtime.Ui
                 if (tlpNetworkTime) {
                     return tlpNetworkTime.Samples;
                 }
+
                 return -1;
             }
         }
@@ -101,9 +108,11 @@ namespace TLP.UdonProfiling.Runtime.Ui
                 if (tlpNetworkTime) {
                     return tlpNetworkTime.AverageError;
                 }
+
                 return 0;
             }
         }
+
         public double CorrectiveDrift
         {
             get
@@ -112,6 +121,7 @@ namespace TLP.UdonProfiling.Runtime.Ui
                 if (tlpNetworkTime) {
                     return tlpNetworkTime.AverageError / tlpNetworkTime.Samples;
                 }
+
                 return 0;
             }
         }

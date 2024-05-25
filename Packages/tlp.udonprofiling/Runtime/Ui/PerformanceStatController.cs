@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using TLP.UdonUtils.DesignPatterns.MVC;
+using TLP.UdonUtils.Runtime.DesignPatterns.MVC;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -15,37 +15,29 @@ namespace TLP.UdonProfiling.Runtime.Ui
         private float UpdateInterval = 1f;
 
         #region State
-
         private int _previousFrameCount;
         private bool _hasStarted;
         private float _lastUpdated;
         private float _lastIntervalDuration;
         private PerformanceStatModel _performanceStatModel;
         private readonly Stopwatch _stopwatch = new Stopwatch();
-
         #endregion
 
         #region Monobehaviour
-
-        internal void OnEnable()
-        {
-            if (!Initialized)
-            {
+        internal void OnEnable() {
+            if (!Initialized) {
                 enabled = false;
                 return;
             }
 
-            if (_hasStarted)
-            {
+            if (_hasStarted) {
                 Start();
             }
         }
 
-        public override void Start()
-        {
+        public override void Start() {
             base.Start();
-            if (!Initialized && !InitializeMvcSingleGameObject(gameObject))
-            {
+            if (!Initialized && !InitializeMvcSingleGameObject(gameObject)) {
                 Error($"Failed to initialize");
                 enabled = false;
                 return;
@@ -56,20 +48,15 @@ namespace TLP.UdonProfiling.Runtime.Ui
             SendCustomEventDelayedSeconds(nameof(UpdateFrameRate), UpdateInterval);
             _hasStarted = true;
         }
-
         #endregion
 
         #region VRC
-
-        public override void OnPlayerJoined(VRCPlayerApi player)
-        {
-            if (!Initialized)
-            {
+        public override void OnPlayerJoined(VRCPlayerApi player) {
+            if (!Initialized) {
                 return;
             }
 
-            if (!Utilities.IsValid(_performanceStatModel))
-            {
+            if (!Utilities.IsValid(_performanceStatModel)) {
                 Error($"{nameof(_performanceStatModel)} invalid");
             }
 
@@ -77,27 +64,21 @@ namespace TLP.UdonProfiling.Runtime.Ui
             _performanceStatModel.NotifyIfDirty(1);
         }
 
-        public override void OnPlayerLeft(VRCPlayerApi player)
-        {
-            if (!Initialized)
-            {
+        public override void OnPlayerLeft(VRCPlayerApi player) {
+            if (!Initialized) {
                 return;
             }
 
             _performanceStatModel.Dirty = true;
             _performanceStatModel.NotifyIfDirty(1);
         }
-
         #endregion
 
         #region Internal
-
-        public void UpdateFrameRate()
-        {
+        public void UpdateFrameRate() {
             float currentTime = Time.timeSinceLevelLoad;
             _lastIntervalDuration = currentTime - _lastUpdated;
-            if (_lastIntervalDuration < UpdateInterval)
-            {
+            if (_lastIntervalDuration < UpdateInterval) {
                 return;
             }
 
@@ -110,12 +91,9 @@ namespace TLP.UdonProfiling.Runtime.Ui
             int countedFrames = frameCount - _previousFrameCount;
             _performanceStatModel.CountedFrames = countedFrames;
 
-            if (countedFrames > 0)
-            {
+            if (countedFrames > 0) {
                 _performanceStatModel.AverageFrameTime = (float)(elapsedTotalMilliseconds / countedFrames);
-            }
-            else
-            {
+            } else {
                 _performanceStatModel.AverageFrameTime = 0f;
             }
 
@@ -126,8 +104,7 @@ namespace TLP.UdonProfiling.Runtime.Ui
             SendCustomEventDelayedSeconds(nameof(UpdateFrameRate), UpdateInterval);
         }
 
-        protected override bool InitializeInternal()
-        {
+        protected override bool InitializeInternal() {
 #if TLP_DEBUG
             DebugLog(nameof(InitializeInternal));
 #endif
@@ -136,14 +113,12 @@ namespace TLP.UdonProfiling.Runtime.Ui
             enabled = true;
 
             bool initSuccess = Utilities.IsValid(_performanceStatModel);
-            if (initSuccess)
-            {
+            if (initSuccess) {
                 enabled = true;
             }
 
             return initSuccess;
         }
-
         #endregion
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 using TLP.UdonUtils;
-using TLP.UdonUtils.Logger;
+using TLP.UdonUtils.Runtime.Logger;
 using UdonSharp;
 using UnityEngine;
 
