@@ -1,7 +1,7 @@
 {
     "name": "tlp.udonprofiling",
     "displayName": "TLP UdonProfiling",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Contains a simple ScreenSpace overlay for displaying Udon performance numbers.",
     "gitDependencies": {},
     "legacyFolders": {},
@@ -12,7 +12,7 @@
     "vpmDependencies": {
         "com.vrchat.worlds": "3.6.x",
         "com.cyan.playerobjectpool": "1.1.x",
-        "tlp.udonutils": "8.0.x"
+        "tlp.udonutils": "8.1.x"
     },
     "unity": "2022.3"
 }

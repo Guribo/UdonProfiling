@@ -1,5 +1,5 @@
 using TLP.UdonProfiling.Runtime.Ui;
-using TLP.UdonUtils;
+using TLP.UdonUtils.Runtime;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;

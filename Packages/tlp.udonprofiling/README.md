@@ -34,6 +34,12 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 
 All notable changes to this project will be documented in this file.
 
+### [2.0.2] - 2024-05-25
+
+#### ⚙️ Miscellaneous Tasks
+
+- Migrate to UdonUtils fix 8.1.0
+
 ### [2.0.1] - 2024-05-25
 
 #### ⚙️ Miscellaneous Tasks
