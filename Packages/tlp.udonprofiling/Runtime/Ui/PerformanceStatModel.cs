@@ -21,6 +21,8 @@ namespace TLP.UdonProfiling.Runtime.Ui
         public float UdonFrameTimeMs { get; set; }
         public int UdonProfiledFrames { get; set; }
 
+        public bool RealTimeMode;
+
         [SerializeField]
         private TimeSource NetworkTime;
 

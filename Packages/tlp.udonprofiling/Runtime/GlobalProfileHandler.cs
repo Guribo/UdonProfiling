@@ -72,26 +72,28 @@ namespace TLP.UdonProfiling.Runtime
 
             if (_elapsedTime > _maxMeasured) {
                 _maxMeasured = _elapsedTime;
+                _model.UdonMaxFrameTimeMs = _maxMeasured;
             }
 
             _measuredTimeTotal += _elapsedTime;
-            _measuredTimeFrameCount += 1;
+            _measuredTimeFrameCount++;
 
             float thresholdMs = MaxFrameTimeMs > 0f ? MaxFrameTimeMs : Time.fixedDeltaTime * 1000f;
             bool tooSlow = _elapsedTime > thresholdMs;
-            if (_measuredTimeFrameCount >= MeasureDurationInFrames || tooSlow) {
-                float udonTotalTimeMs = _measuredTimeTotal / _measuredTimeFrameCount;
-                _model.UdonAverageFrameTimeMs = udonTotalTimeMs;
-                _model.UdonMaxFrameTimeMs = _maxMeasured;
-                _model.UdonFrameTimeMs = _elapsedTime;
-                _model.UdonProfiledFrames = _measuredTimeFrameCount;
+            _model.UdonFrameTimeMs = _elapsedTime;
+            _model.UdonProfiledFrames = _measuredTimeFrameCount;
+
+            float udonTotalTimeMs = _measuredTimeTotal / _measuredTimeFrameCount;
+            _model.UdonAverageFrameTimeMs = udonTotalTimeMs;
+
+            if (_measuredTimeFrameCount >= MeasureDurationInFrames) {
                 _measuredTimeTotal = 0f;
                 _measuredTimeFrameCount = 0;
                 _maxMeasured = 0;
             }
 
             if (tooSlow) {
-                if (Utilities.IsValid(Logger)) {
+                if (Utilities.IsValid(Logger) && Logger.CreateDebugFrameLog) {
                     Warn(
                             $"UDON is taking way too long: {thresholdMs:F4}ms < {_elapsedTime:F4}ms\n{Logger.DebugLogOfFrame}"
                     );

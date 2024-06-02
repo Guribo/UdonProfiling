@@ -34,6 +34,16 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 
 All notable changes to this project will be documented in this file.
 
+### [2.1.0] - 2024-06-02
+
+#### 🚀 Features
+
+- Add fast and slow update mode
+
+#### ⚙️ Miscellaneous Tasks
+
+- Support UdonUtils 8.2.0
+
 ### [2.0.2] - 2024-05-25
 
 #### ⚙️ Miscellaneous Tasks
