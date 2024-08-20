@@ -9,7 +9,7 @@ It was originally based on a [version](https://gist.github.com/MerlinVR/2da80b29
 
 ## Installation
 
-1. Install VRChat World SDK 3.6
+1. Install VRChat World SDK 3.7
 2. Install CyanPlayerObjectPool: https://cyanlaser.github.io/CyanPlayerObjectPool/
 3. Install TLP UdonProfiling: https://guribo.github.io/TLP/
 
@@ -33,6 +33,12 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 ## Changelog
 
 All notable changes to this project will be documented in this file.
+
+### [2.1.1] - 2024-08-20
+
+#### ⚙️ Miscellaneous Tasks
+
+- Remove redundant dependencies, update to UdonUtils 9.0.0
 
 ### [2.1.0] - 2024-06-02
 
