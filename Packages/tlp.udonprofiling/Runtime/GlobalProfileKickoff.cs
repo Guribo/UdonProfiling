@@ -7,11 +7,12 @@ using UnityEngine;
 
 namespace TLP.UdonProfiling.Runtime
 {
+    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
     [DefaultExecutionOrder(ExecutionOrder)]
-    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [TlpDefaultExecutionOrder(typeof(GlobalProfileKickoff), ExecutionOrder)]
     public class GlobalProfileKickoff : TlpBaseBehaviour
     {
-        protected override int ExecutionOrderReadOnly => ExecutionOrder;
+        public override int ExecutionOrderReadOnly => ExecutionOrder;
 
         [PublicAPI]
         public new const int ExecutionOrder = TlpLogger.ExecutionOrder + 1;
@@ -19,9 +20,14 @@ namespace TLP.UdonProfiling.Runtime
         [NonSerialized]
         public System.Diagnostics.Stopwatch Stopwatch;
 
-        public override void Start() {
-            base.Start();
+
+        protected override bool SetupAndValidate() {
+            if (!base.SetupAndValidate()) {
+                return false;
+            }
+
             Stopwatch = new System.Diagnostics.Stopwatch();
+            return true;
         }
 
         private void FixedUpdate() {

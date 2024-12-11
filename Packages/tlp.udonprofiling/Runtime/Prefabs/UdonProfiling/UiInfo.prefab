@@ -234,6 +234,7 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 881233274547021562}
   AutoRetrySendOnFailure: 1
+  PauseSynchronization: 0
   Severity: 5
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
@@ -262,7 +263,8 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 2103683050647155770}
   AutoRetrySendOnFailure: 1
-  Severity: 5
+  PauseSynchronization: 0
+  Severity: 3
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
   PoolableInUse: 0
@@ -321,10 +323,12 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 8177235444650323710}
   AutoRetrySendOnFailure: 1
+  PauseSynchronization: 0
   Severity: 3
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
   PoolableInUse: 0
+  RealTimeMode: 0
   NetworkTime: {fileID: 0}
   RefNetworkTime: {fileID: 0}
 --- !u!114 &8177235444650323710
@@ -402,6 +406,7 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 8921995622518305993}
   AutoRetrySendOnFailure: 1
+  PauseSynchronization: 0
   Severity: 3
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
@@ -459,11 +464,12 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 1627215397569306907}
   AutoRetrySendOnFailure: 1
+  PauseSynchronization: 0
   Severity: 5
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
   PoolableInUse: 0
-  MaxFrameTimeMs: 10
+  MaxFrameTimeMs: 0
   MeasureDurationInFrames: 1000
 --- !u!114 &1627215397569306907
 MonoBehaviour:
@@ -514,6 +520,7 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 6449119067179388754}
   AutoRetrySendOnFailure: 1
+  PauseSynchronization: 0
   Severity: 5
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}

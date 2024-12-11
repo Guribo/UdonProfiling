@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using TLP.UdonUtils.Runtime.DesignPatterns.MVC;
+using TLP.UdonUtils.Runtime.Testing;
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,10 +8,16 @@ using VRC.SDKBase;
 
 namespace TLP.UdonProfiling.Runtime.Ui
 {
-    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
     [DefaultExecutionOrder(ExecutionOrder)]
+    [TlpDefaultExecutionOrder(typeof(PerformanceStatView), ExecutionOrder)]
     public class PerformanceStatView : View
     {
+        public override int ExecutionOrderReadOnly => ExecutionOrder;
+
+        [PublicAPI]
+        public new const int ExecutionOrder = TestResultsUi.ExecutionOrder + 1;
+
         [SerializeField]
         internal Text PlayerCount;
 
@@ -29,7 +37,6 @@ namespace TLP.UdonProfiling.Runtime.Ui
         internal Text UdonFrameTimeText;
 
         private PerformanceStatModel _performanceStatModel;
-
 
 
         protected override bool InitializeInternal() {

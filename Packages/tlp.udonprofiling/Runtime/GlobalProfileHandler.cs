@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using TLP.UdonProfiling.Runtime.Ui;
 using TLP.UdonUtils.Runtime;
 using UdonSharp;
@@ -6,29 +7,44 @@ using VRC.SDKBase;
 
 namespace TLP.UdonProfiling.Runtime
 {
-    [DefaultExecutionOrder(int.MaxValue)]
-    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
+    [DefaultExecutionOrder(ExecutionOrder)]
+    [TlpDefaultExecutionOrder(typeof(GlobalProfileHandler), ExecutionOrder)]
     public class GlobalProfileHandler : TlpBaseBehaviour
     {
+        public override int ExecutionOrderReadOnly => ExecutionOrder;
+
+        [PublicAPI]
+        public new const int ExecutionOrder = TlpExecutionOrder.RecordingEnd - 1;
+
         private GlobalProfileKickoff _kickoff;
 
-        public float MaxFrameTimeMs = 10f;
+        public float MaxFrameTimeMs;
 
         [SerializeField]
         [Range(1, 10000)]
         private int MeasureDurationInFrames = 1000;
 
-        public override void Start() {
-            base.Start();
-            _kickoff = GetComponent<GlobalProfileKickoff>();
-            _model = GetComponent<PerformanceStatModel>();
-            if (Utilities.IsValid(_model)) {
-                return;
+        protected override bool SetupAndValidate() {
+            if (!base.SetupAndValidate()) {
+                return false;
             }
 
-            Error($"{nameof(PerformanceStatModel)} component required");
-            enabled = false;
+            _kickoff = GetComponent<GlobalProfileKickoff>();
+            if (!Utilities.IsValid(_kickoff)) {
+                Error($"{nameof(GlobalProfileKickoff)} component missing");
+                return false;
+            }
+
+            _model = GetComponent<PerformanceStatModel>();
+            if (!Utilities.IsValid(_model)) {
+                Error($"{nameof(PerformanceStatModel)} component missing");
+                return false;
+            }
+
+            return true;
         }
+
 
         private int _currentFrame = -1;
         private float _elapsedTime;

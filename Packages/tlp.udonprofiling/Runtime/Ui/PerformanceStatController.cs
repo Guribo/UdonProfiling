@@ -1,22 +1,29 @@
 using System.Diagnostics;
+using JetBrains.Annotations;
 using TLP.UdonUtils.Runtime.DesignPatterns.MVC;
+using TLP.UdonUtils.Runtime.EditorOnly;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 
 namespace TLP.UdonProfiling.Runtime.Ui
 {
-    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
     [DefaultExecutionOrder(ExecutionOrder)]
+    [TlpDefaultExecutionOrder(typeof(PerformanceStatController), ExecutionOrder)]
     public class PerformanceStatController : Controller
     {
+        public override int ExecutionOrderReadOnly => ExecutionOrder;
+
+        [PublicAPI]
+        public new const int ExecutionOrder = Controller.ExecutionOrder + 10;
+
         [SerializeField]
         [Range(1, 10)]
         private float UpdateInterval = 1f;
 
         #region State
         private int _previousFrameCount;
-        private bool _hasStarted;
         private float _lastUpdated;
         private float _lastIntervalDuration;
         private PerformanceStatModel _performanceStatModel;
@@ -25,34 +32,42 @@ namespace TLP.UdonProfiling.Runtime.Ui
 
         #region Monobehaviour
         internal void OnEnable() {
-            if (!Initialized) {
-                enabled = false;
-                return;
-            }
-
-            if (_hasStarted) {
-                Start();
+            if (HasStartedOk) {
+                Restart();
             }
         }
 
-        public override void Start() {
-            base.Start();
-            if (!Initialized && !InitializeMvcSingleGameObject(gameObject)) {
-                Error($"Failed to initialize");
-                enabled = false;
-                return;
+        protected override bool SetupAndValidate() {
+            if (!base.SetupAndValidate()) {
+                return false;
             }
 
+            if (!InitializeMvcSingleGameObject(gameObject)) {
+                Error($"MVC failed to initialize");
+                return false;
+            }
+
+            Restart();
+            return true;
+        }
+
+        private void Restart() {
+            #region TLP_DEBUG
+#if TLP_DEBUG
+            DebugLog(nameof(Restart));
+#endif
+            #endregion
+
+            Info("Starting refresh loop");
             _previousFrameCount = Time.frameCount;
             _lastUpdated = Time.timeSinceLevelLoad;
             SendCustomEventDelayedSeconds(nameof(UpdateFrameRate), UpdateInterval);
-            _hasStarted = true;
         }
         #endregion
 
         #region VRC
         public override void OnPlayerJoined(VRCPlayerApi player) {
-            if (!Initialized) {
+            if (!IsControllerInitialized) {
                 return;
             }
 
@@ -65,7 +80,7 @@ namespace TLP.UdonProfiling.Runtime.Ui
         }
 
         public override void OnPlayerLeft(VRCPlayerApi player) {
-            if (!Initialized) {
+            if (!IsControllerInitialized) {
                 return;
             }
 
@@ -101,7 +116,11 @@ namespace TLP.UdonProfiling.Runtime.Ui
             _performanceStatModel.Dirty = true;
             _performanceStatModel.NotifyIfDirty(1);
 
-            SendCustomEventDelayedSeconds(nameof(UpdateFrameRate), UpdateInterval);
+            if (IsActiveAndEnabled)
+                SendCustomEventDelayedSeconds(nameof(UpdateFrameRate), UpdateInterval);
+            else {
+                Info("Stopping refresh loop");
+            }
         }
 
         protected override bool InitializeInternal() {

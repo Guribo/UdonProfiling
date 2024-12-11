@@ -34,6 +34,26 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 
 All notable changes to this project will be documented in this file.
 
+### [2.2.0] - 2024-12-11
+
+#### 🚀 Features
+
+- Add editor execution order validation
+- *(GlobalProfileHandler)* Improve error handling during start
+- *(GlobalProfileKickoff)* Migrate to use SetupAndValidate
+- *(PerformanceStatController)* Migrate to use SetupAndValidate
+- Make ExecutionOrderReadOnly public
+- Migrate to latest UdonUtils
+
+#### 🐛 Bug Fixes
+
+- Add ExecutionOrder attribute to every class
+
+#### ⚙️ Miscellaneous Tasks
+
+- Refresh scene
+- Bump version
+
 ### [2.1.1] - 2024-08-20
 
 #### ⚙️ Miscellaneous Tasks

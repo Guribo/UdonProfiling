@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using TLP.UdonUtils.Runtime.DesignPatterns.MVC;
 using TLP.UdonUtils.Runtime.Sources;
 using TLP.UdonUtils.Runtime.Sources.Time;
@@ -8,10 +9,16 @@ using VRC.SDKBase;
 
 namespace TLP.UdonProfiling.Runtime.Ui
 {
-    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    [UdonBehaviourSyncMode(BehaviourSyncMode.NoVariableSync)]
     [DefaultExecutionOrder(ExecutionOrder)]
+    [TlpDefaultExecutionOrder(typeof(PerformanceStatModel), ExecutionOrder)]
     public class PerformanceStatModel : Model
     {
+        public override int ExecutionOrderReadOnly => ExecutionOrder;
+
+        [PublicAPI]
+        public new const int ExecutionOrder = Model.ExecutionOrder + 10;
+
         public int CountedFrames { get; set; }
         public float AverageFrameTime { get; set; }
         public float UdonAverageFrameTimeMs { get; set; }
