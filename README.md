@@ -34,6 +34,12 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 
 All notable changes to this project will be documented in this file.
 
+### [2.2.1] - 2024-12-22
+
+#### ⚙️ Miscellaneous Tasks
+
+- Support newer, compatible UdonUtils versions, add minimum supported VRC SDK version
+
 ### [2.2.0] - 2024-12-11
 
 #### 🚀 Features
