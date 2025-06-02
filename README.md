@@ -34,6 +34,12 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 
 All notable changes to this project will be documented in this file.
 
+### [2.2.2] - 2025-06-02
+
+#### ⚙️ Miscellaneous Tasks
+
+- Bump version and update dependencies
+
 ### [2.2.1] - 2024-12-22
 
 #### ⚙️ Miscellaneous Tasks

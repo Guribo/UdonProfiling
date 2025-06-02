@@ -1,7 +1,7 @@
 {
     "name": "tlp.udonprofiling",
     "displayName": "TLP UdonProfiling",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "description": "Contains a simple ScreenSpace overlay for displaying Udon performance numbers.",
     "gitDependencies": {},
     "legacyFolders": {},
@@ -10,7 +10,7 @@
         "url": "https://github.com/Guribo"
     },
     "vpmDependencies": {
-        "com.vrchat.worlds": "~3.7.5",
+        "com.vrchat.worlds": "~3.8.1",
         "tlp.udonutils": "^11.1.0"
     },
     "unity": "2022.3"
