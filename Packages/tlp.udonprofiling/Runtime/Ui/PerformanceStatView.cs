@@ -69,7 +69,7 @@ namespace TLP.UdonProfiling.Runtime.Ui
                     $"TLP network time\n" +
                     $"{_performanceStatModel.ServerTime * 1000:F3} ms\n" +
                     $"{_performanceStatModel.VrcServerTime * 1000:F3} ms\n" +
-                    $"{_performanceStatModel.CorrectiveDrift * 1000:F3} ms\n" +
+                    $"{_performanceStatModel.CorrectiveDrift * 1_000_000:F3} µs\n" +
                     $"{_performanceStatModel.CumulativeError * 1000:F3} ms\n" +
                     $"{_performanceStatModel.ServerTimeError * 1000:F3} ms\n";
 

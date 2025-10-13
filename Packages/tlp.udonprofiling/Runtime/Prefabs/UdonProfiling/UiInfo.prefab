@@ -411,9 +411,13 @@ MonoBehaviour:
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
   PoolableInUse: 0
+  DefaultScheduler: {fileID: 0}
+  LimitToOncePerFrame: 0
   Listeners: []
   RaiseOnEnable: 0
   RaiseOnStart: 0
+  NotifyAsync: 0
+  UseAsyncEventQueue: 0
   ListenerMethod: OnRaised
 --- !u!114 &8921995622518305993
 MonoBehaviour:
@@ -469,7 +473,7 @@ MonoBehaviour:
   EventInstigator: {fileID: 0}
   Pool: {fileID: 0}
   PoolableInUse: 0
-  MaxFrameTimeMs: 0
+  MaxFrameTimeMs: 100
   MeasureDurationInFrames: 1000
 --- !u!114 &1627215397569306907
 MonoBehaviour:

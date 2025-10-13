@@ -97,17 +97,18 @@ namespace TLP.UdonProfiling.Runtime.Ui
                 return;
             }
 
-            double elapsedTotalMilliseconds = _stopwatch.Elapsed.TotalMilliseconds;
+            float elapsedTotalMilliseconds = (float)_stopwatch.Elapsed.TotalMilliseconds;
             _stopwatch.Restart();
 
             _lastUpdated = currentTime;
 
             int frameCount = Time.frameCount;
             int countedFrames = frameCount - _previousFrameCount;
-            _performanceStatModel.CountedFrames = countedFrames;
+            _performanceStatModel.CountedFrames = Mathf.RoundToInt(
+                    (frameCount - _previousFrameCount) / (0.001f * elapsedTotalMilliseconds));
 
             if (countedFrames > 0) {
-                _performanceStatModel.AverageFrameTime = (float)(elapsedTotalMilliseconds / countedFrames);
+                _performanceStatModel.AverageFrameTime = elapsedTotalMilliseconds / countedFrames;
             } else {
                 _performanceStatModel.AverageFrameTime = 0f;
             }
