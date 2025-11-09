@@ -30,6 +30,11 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 3. PATCH version: backward compatible bug fixes were implemented
    - Implication: after updating remove potential workarounds you added
 
+### [2.3.1] - 2025-11-09
+
+#### ⚙️ Miscellaneous Tasks
+
+- Add support for latest UdonUtils 12.0.0
 ### [2.3.0] - 2025-10-13
 
 #### 🚀 Features
