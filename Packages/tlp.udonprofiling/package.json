@@ -1,7 +1,7 @@
 {
     "name": "tlp.udonprofiling",
     "displayName": "TLP UdonProfiling",
-    "version": "2.3.1",
+    "version": "2.3.2",
     "description": "Contains a simple ScreenSpace overlay for displaying Udon performance numbers.",
     "gitDependencies": {},
     "legacyFolders": {},

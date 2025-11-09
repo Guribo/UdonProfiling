@@ -10,8 +10,7 @@ It was originally based on a [version](https://gist.github.com/MerlinVR/2da80b29
 ## Installation
 
 1. Install VRChat World SDK 3.9.0
-2. Install CyanPlayerObjectPool: https://cyanlaser.github.io/CyanPlayerObjectPool/
-3. Install TLP UdonProfiling: https://guribo.github.io/TLP/
+2. Install TLP UdonProfiling: https://guribo.github.io/TLP/
 
 ## Setup
 
@@ -30,6 +29,11 @@ The used pattern MAJOR.MINOR.PATCH indicates:
 3. PATCH version: backward compatible bug fixes were implemented
    - Implication: after updating remove potential workarounds you added
 
+### [2.3.2] - 2025-11-09
+
+#### 📚 Documentation
+
+- Remove Cyan Object Pool from installation instructions
 ### [2.3.1] - 2025-11-09
 
 #### ⚙️ Miscellaneous Tasks
